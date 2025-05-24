@@ -7,7 +7,6 @@ def cat_matrices2D(mat1, mat2, axis=0):
     Concatenates two 2D matrices along the specified axis.
     """
     if axis == 0:
-        # Check that row dimensions match (i.e., same number of columns in each row)
         if len(mat1[0]) != len(mat2[0]):
             return None
         return [row[:] for row in mat1] + [row[:] for row in mat2]
