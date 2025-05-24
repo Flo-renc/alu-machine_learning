@@ -14,4 +14,3 @@ def cat_arrays(arr1, arr2):
         list: New list containing elements from arr1 followed by arr2
     """
     return arr1 + arr2
-

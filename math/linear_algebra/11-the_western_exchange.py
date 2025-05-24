@@ -10,4 +10,3 @@ def np_transpose(matrix):
     Returns the transposed version of a numpy ndarray
     """
     return matrix.transpose()
-

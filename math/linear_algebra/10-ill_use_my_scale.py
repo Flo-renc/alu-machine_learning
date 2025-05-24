@@ -14,4 +14,3 @@ def np_shape(matrix):
         tuple: Shape of the array.
     """
     return matrix.shape
-
