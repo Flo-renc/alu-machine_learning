@@ -3,6 +3,7 @@
 Module that defines mat_mul to perform matrix multiplication.
 """
 
+
 def mat_mul(mat1, mat2):
     """
     Multiplies two 2D matrices and returns the result as a new matrix.
