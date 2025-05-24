@@ -3,6 +3,7 @@
 Defines np_shape to return the shape of a numpy ndarray.
 """
 
+
 def np_shape(matrix):
     """
     Returns the shape of a numpy array.
