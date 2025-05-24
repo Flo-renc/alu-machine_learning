@@ -5,14 +5,6 @@
 def cat_matrices2D(mat1, mat2, axis=0):
     """
     Concatenates two 2D matrices along the specified axis.
-
-    Args:
-        mat1 (list of list of int/float): First matrix
-        mat2 (list of list of int/float): Second matrix
-        axis (int): Axis to concatenate on (0 = rows, 1 = columns)
-
-    Returns:
-        list of list of int/float: New concatenated matrix or None if shape mismatch
     """
     if axis == 0:
         # Check that row dimensions match (i.e., same number of columns in each row)

@@ -5,14 +5,6 @@
 def add_matrices2D(mat1, mat2):
     """
     Adds two 2D matrices element-wise.
-
-    Args:
-        mat1 (list of list of int/float): First 2D matrix
-        mat2 (list of list of int/float): Second 2D matrix
-
-    Returns:
-        list: New matrix with element-wise sums
-        None: If matrices are not the same shape
     """
     if len(mat1) != len(mat2):
         return None
