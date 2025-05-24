@@ -3,7 +3,6 @@
 Module to perform matrix transposition using NumPy
 """
 
-import numpy as np
 
 def np_transpose(matrix):
     """
