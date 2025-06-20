@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""Poisson distribution class"""
-import math
+"""Poisson distribution class without imports"""
 
 
 class Poisson:
-    """Class that represents a Poisson distribution"""
+    """Represents a Poisson distribution"""
 
     def __init__(self, data=None, lambtha=1.):
-        """Initialize the Poisson distribution"""
+        """Initialize the distribution"""
         if data is None:
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
@@ -19,27 +18,39 @@ class Poisson:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(sum(data) / len(data))
 
+    def factorial(self, k):
+        """Computes factorial of k"""
+        result = 1
+        for i in range(1, k + 1):
+            result *= i
+        return result
+
+    def exp(self, x):
+        """Approximates e^(-x) using Taylor series (up to 50 terms)"""
+        result = 1
+        term = 1
+        for i in range(1, 51):
+            term *= -x / i
+            result += term
+        return result
+
     def pmf(self, k):
-        """Probability Mass Function for Poisson distribution"""
+        """Probability Mass Function"""
         if not isinstance(k, int):
             k = int(k)
         if k < 0:
             return 0
 
-        # PMF formula: P(k) = (λ^k * e^-λ) / k!
-        lambtha = self.lambtha
-        return (lambtha ** k * math.exp(-lambtha)) / math.factorial(k)
+        return (self.lambtha ** k * self.exp(-self.lambtha)) / self.factorial(k)
 
     def cdf(self, k):
-        """Cumulative Distribution Function for Poisson distribution"""
+        """Cumulative Distribution Function"""
         if not isinstance(k, int):
             k = int(k)
         if k < 0:
             return 0
 
-        # CDF = sum of PMFs from 0 to k
-        lambtha = self.lambtha
-        cdf = 0
+        cumulative = 0
         for i in range(k + 1):
-            cdf += (lambtha ** i * math.exp(-lambtha)) / math.factorial(i)
-        return cdf
+            cumulative += (self.lambtha ** i * self.exp(-self.lambtha)) / self.factorial(i)
+        return cumulative

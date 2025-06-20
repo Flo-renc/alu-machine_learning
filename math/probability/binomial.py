@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
-"""Binomial distribution class"""
-import math
+"""Binomial distribution class without external imports"""
 
 
 class Binomial:
     """Represents a binomial distribution"""
 
     def __init__(self, data=None, n=1, p=0.5):
-        """Initialize the binomial distribution"""
+        """Initializes the binomial distribution"""
         if data is None:
             if n <= 0:
                 raise ValueError("n must be a positive value")
@@ -21,25 +20,35 @@ class Binomial:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             mean = sum(data) / len(data)
-            var = sum((x - mean) ** 2 for x in data) / len(data)
-            p = 1 - (var / mean)
+            variance = sum((x - mean) ** 2 for x in data) / len(data)
+            p = 1 - (variance / mean)
             n = round(mean / p)
             self.n = n
-            self.p = mean / n
+            self.p = mean / self.n
+
+    def factorial(self, x):
+        """Computes factorial of x"""
+        result = 1
+        for i in range(1, x + 1):
+            result *= i
+        return result
+
+    def combination(self, n, k):
+        """Computes n choose k"""
+        return self.factorial(n) // (self.factorial(k) * self.factorial(n - k))
 
     def pmf(self, k):
-        """Probability Mass Function for Binomial distribution"""
+        """Probability Mass Function"""
         if not isinstance(k, int):
             k = int(k)
         if k < 0 or k > self.n:
             return 0
 
-        # Compute nCk (binomial coefficient)
-        comb = math.comb(self.n, k)
+        comb = self.combination(self.n, k)
         return comb * (self.p ** k) * ((1 - self.p) ** (self.n - k))
 
     def cdf(self, k):
-        """Cumulative Distribution Function for Binomial distribution"""
+        """Cumulative Distribution Function"""
         if not isinstance(k, int):
             k = int(k)
         if k < 0:
@@ -47,4 +56,7 @@ class Binomial:
         if k > self.n:
             k = self.n
 
-        return sum(self.pmf(i) for i in range(k + 1))
+        cumulative = 0
+        for i in range(k + 1):
+            cumulative += self.pmf(i)
+        return cumulative
