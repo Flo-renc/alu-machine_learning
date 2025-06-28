@@ -3,6 +3,7 @@
 Calculates the inverse of a matrix using its adjugate and determinant.
 """
 
+
 def determinant(matrix):
     """Recursive determinant function"""
     if matrix == [[]]:
@@ -17,6 +18,7 @@ def determinant(matrix):
         sub = [row[:col] + row[col+1:] for row in matrix[1:]]
         det += ((-1) ** col) * matrix[0][col] * determinant(sub)
     return det
+
 
 def minor(matrix):
     """Returns the minor matrix"""
