@@ -1,1 +1,1 @@
-Multivariate probability tasks
+Multivariate tasks

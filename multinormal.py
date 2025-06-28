@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Defines the MultiNormal class representing a Multivariate Normal distribution"""
+"""Defines the MultiNormal class 
+representing a Multivariate Normal 
+distribution"""
 import numpy as np
 
 
@@ -11,13 +13,6 @@ class MultiNormal:
     def __init__(self, data):
         """
         Initializes a MultiNormal object
-
-        Parameters:
-        - data (numpy.ndarray): shape (d, n) with n data points in d dimensions
-
-        Raises:
-        - TypeError: if data is not a 2D numpy.ndarray
-        - ValueError: if n < 2
         """
         if not isinstance(data, np.ndarray) or data.ndim != 2:
             raise TypeError("data must be a 2D numpy.ndarray")
