@@ -19,5 +19,5 @@ def mean_cov(X):
     mean = np.mean(X, axis=0, keepdims=True)
     X_centered = X - mean
     cov = np.dot(X_centered.T, X_centered) / (n - 1)
-
+    
     return mean, cov

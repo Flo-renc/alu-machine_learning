@@ -1,1 +1,0 @@
-This is a project an concepts of calculus 
