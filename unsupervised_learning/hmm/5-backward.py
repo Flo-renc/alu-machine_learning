@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def backward(Observation, Emission, Transition, Initial):
     """
     Performs backward algorithm

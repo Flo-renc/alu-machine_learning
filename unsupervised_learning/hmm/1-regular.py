@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 def regular(P):
     """
     Determines steady state probabilities of a regular Markov chain

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3s
+
 def forward(Observation, Emission, Transition, Initial):
     """
     Performs forward algorithm for HMM

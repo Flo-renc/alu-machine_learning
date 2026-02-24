@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def baum_welch(Observations, Transition, Emission,
                Initial, iterations=1000):
     """

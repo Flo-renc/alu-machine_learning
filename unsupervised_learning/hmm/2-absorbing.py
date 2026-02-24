@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def absorbing(P):
     """
     Determines if a Markov chain is absorbing
