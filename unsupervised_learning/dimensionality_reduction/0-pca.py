@@ -32,7 +32,7 @@ def pca(X, var=0.95):
         cumulative_ratio = np.cumsum(explained_variance) / total_variance
 
         # Find first index where cumulative variance >= var
-        nd = int(np.argmax(cumulative_ratio >= var)) + 1
+        nd = int(np.sum(cumulative_ratio >= var)) + 1
 
         W = Vt[:nd].T
         return W
