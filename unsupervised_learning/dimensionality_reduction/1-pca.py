@@ -15,18 +15,13 @@ def pca(X, ndim):
             ndim <= 0 or
             ndim > X.shape[1]):
         return None
+    # SVD
+    U, S, Vt = np.linalg.svd(X, full_matrices=False)
 
-    try:
-        # Singular Value Decomposition
-        U, S, Vt = np.linalg.svd(X, full_matrices=False)
+    # Keep first ndim components
+    W = Vt[:ndim].T
 
-        # Select first ndim principal components
-        W = Vt[:ndim].T
+    # Project data
+    T = X @ W
 
-        # Transform the data
-        T = X @ W
-
-        return T
-
-    except Exception:
-        return None
+    return T
