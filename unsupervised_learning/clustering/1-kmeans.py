@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+"""
+Module that performs K-means clustering
+"""
+import numpy as np
+
+
+def kmeans(X, k, iterations=1000):
+    """
+    Performs K-means clustering
+
+    Parameters:
+    X (numpy.ndarray): dataset of shape (n, d)
+    k (int): number of clusters
+    iterations (int): maximum iterations
+
+    Returns:
+    C, clss
+    or None, None on failure
+    """
+
+    if (not isinstance(X, np.ndarray) or
+            len(X.shape) != 2 or
+            not isinstance(k, int) or
+            k <= 0 or
+            k > X.shape[0] or
+            not isinstance(iterations, int) or
+            iterations <= 0):
+        return None, None
+
+    n, d = X.shape
+
+    # First use of uniform (initialization)
+    min_vals = np.min(X, axis=0)
+    max_vals = np.max(X, axis=0)
+    C = np.random.uniform(min_vals, max_vals, (k, d))
+
+    for _ in range(iterations):  # LOOP 1
+
+        # Compute distances
+        distances = np.sum(
+            (X[:, np.newaxis, :] - C) ** 2,
+            axis=2
+        )
+
+        clss = np.argmin(distances, axis=1)
+
+        new_C = np.copy(C)
+
+        # Update centroids
+        for i in range(k):  # LOOP 2
+
+            points = X[clss == i]
+
+            if points.shape[0] == 0:
+                # Second use of uniform
+                new_C[i] = np.random.uniform(
+                    min_vals,
+                    max_vals
+                )
+            else:
+                new_C[i] = np.mean(points, axis=0)
+
+        if np.allclose(C, new_C):
+            return C, clss
+
+        C = new_C
+
+    return C, clss
