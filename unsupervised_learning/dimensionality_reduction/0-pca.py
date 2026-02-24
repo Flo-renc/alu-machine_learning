@@ -25,22 +25,16 @@ def pca(X, var=0.95):
         return None
 
     try:
-        # SVD
         U, S, Vt = np.linalg.svd(X, full_matrices=False)
 
-        # Compute explained variance
         explained_variance = S ** 2
         total_variance = np.sum(explained_variance)
-
-        # Cumulative ratio
         cumulative_ratio = np.cumsum(explained_variance) / total_variance
 
-        # Find minimum number of components
-        nd = np.searchsorted(cumulative_ratio, var) + 1
+        # Find first index where cumulative variance >= var
+        nd = int(np.argmax(cumulative_ratio >= var)) + 1
 
-        # Build weight matrix
         W = Vt[:nd].T
-
         return W
 
     except Exception:

@@ -4,6 +4,8 @@
 import numpy as np
 
 def initialize(X, k):
+
+
     """
     initialize cluster centriods for k-means
     
