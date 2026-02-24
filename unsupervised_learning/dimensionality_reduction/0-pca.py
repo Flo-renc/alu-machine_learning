@@ -26,12 +26,10 @@ def pca(X, var=0.95):
     try:
         U, S, Vt = np.linalg.svd(X, full_matrices=False)
 
-        explained_variance = S ** 2
-        total_variance = np.sum(explained_variance)
-        cumulative_ratio = np.cumsum(explained_variance) / total_variance
+        # Use S directly (not S²) to compute variance ratio
+        cumulative_ratio = np.cumsum(S) / np.sum(S)
 
-        # Count components where cumulative variance is LESS than var,
-        # then add 1 to include the one that pushes it over
+        # Count components needed
         nd = int(np.sum(cumulative_ratio < var)) + 1
 
         W = Vt[:nd].T
