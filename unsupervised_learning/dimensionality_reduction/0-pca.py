@@ -17,7 +17,6 @@ def pca(X, var=0.95):
     W (numpy.ndarray): weight matrix (d, nd)
     """
 
-    # Validation
     if (not isinstance(X, np.ndarray) or
             len(X.shape) != 2 or
             not isinstance(var, float) or
@@ -31,8 +30,9 @@ def pca(X, var=0.95):
         total_variance = np.sum(explained_variance)
         cumulative_ratio = np.cumsum(explained_variance) / total_variance
 
-        # Find first index where cumulative variance >= var
-        nd = int(np.sum(cumulative_ratio >= var)) + 1
+        # Count components where cumulative variance is LESS than var,
+        # then add 1 to include the one that pushes it over
+        nd = int(np.sum(cumulative_ratio < var)) + 1
 
         W = Vt[:nd].T
         return W
